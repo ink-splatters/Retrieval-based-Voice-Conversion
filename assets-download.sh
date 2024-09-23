@@ -15,10 +15,16 @@ REPO_FOLDER="VoiceConversionWebUI"
 assets_commit_hash="$1"
 assets_dir="$2"
 
+if command -v gix >/dev/null 2>&1 ; then
+    GIT=gix
+else
+    GIT=git
+fi
+
 export GIT_CLONE_PROTECTION_ACTIVE=false
 export GIT_LFS_SKIP_SMUDGE=1
 
-git clone https://huggingface.co/lj1995/VoiceConversionWebUI "${REPO_FOLDER}"
+$GIT clone https://huggingface.co/lj1995/VoiceConversionWebUI "${REPO_FOLDER}"
 
 pushd "${REPO_FOLDER}"
 
